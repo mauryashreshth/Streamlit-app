@@ -1,8 +1,10 @@
 import streamlit as st
 from streamlit_chat import message
-from bardapi import Bard
+import bardapi
+import os
+
+# set your __Secure-1PSID value to key
 dilKiBaat = 'XwgvfPVECktBPQ9gS64EuzKMqQ_yv0jgV4vXTRk0Ek0cIzewNhoX0xmpZzBl671RXzt8ug.'
-bard = Bard(token=dilKiBaat)
 
 st.set_page_config(page_title="AI BOT")
 st.markdown(
@@ -30,13 +32,19 @@ st.title("Tutoring Bot")
 
 # Function to generate a response
 def genrateRes(prompt):
-    response = bard.get_answer(prompt)['content']
-    return response
+    
+    # set your input text
+    input_text = prompt
+
+    # Send an API request and get a response.
+    response = bardapi.core.Bard(dilKiBaat).get_answer(input_text)
+    return response['content']
 
 
 def get_text():
     input_text = st.text_input("Puneet Bot: ", "", key="input")
     return input_text
+
 
 # Creating two lists to store generated and past texts
 
@@ -61,6 +69,4 @@ if st.session_state['generated']:
     for i in range(len(st.session_state['generated'])-1, -1, -1):
         message(st.session_state['generated'][i], key = 'generated_'+str(i)) # We use message to display the generated message in reverse order. The key is used to store unique item
         message(st.session_state['past'][i], key = 'past_'+str(i), is_user=True) # We use message to display the past message in reverse order. The key is used to mark it as unique
-
-
 
