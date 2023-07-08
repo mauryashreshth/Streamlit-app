@@ -1,10 +1,10 @@
 import streamlit as st
 from streamlit_chat import message
-import bardapi
+from bardapi import Bard
 import os
-
+os.environ['_BARD_API_KEY']="YggvfJQF5xswQVjlKzOIGg5AskxEm6j3POo9E9g8lMFVh2EfEWcOpuZxxymNu6wZVuPHmg."
 # set your __Secure-1PSID value to key
-dilKiBaat = 'XwgvfPVECktBPQ9gS64EuzKMqQ_yv0jgV4vXTRk0Ek0cIzewNhoX0xmpZzBl671RXzt8ug.'
+# dilKiBaat = 'YggvfJQF5xswQVjlKzOIGg5AskxEm6j3POo9E9g8lMFVh2EfEWcOpuZxxymNu6wZVuPHmg.'
 
 st.set_page_config(page_title="AI BOT")
 st.markdown(
@@ -37,8 +37,9 @@ def genrateRes(prompt):
     input_text = prompt
 
     # Send an API request and get a response.
-    response = bardapi.core.Bard(dilKiBaat).get_answer(input_text)
-    return response['content']
+    bard = Bard(timeout=10)  # Set timeout in seconds
+    response = bard.get_answer(prompt)['content']
+    return response
 
 
 def get_text():
