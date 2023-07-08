@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_chat import message
 from bardapi import Bard
 import os
-os.environ['_BARD_API_KEY']="YggvfJQF5xswQVjlKzOIGg5AskxEm6j3POo9E9g8lMFVh2EfEWcOpuZxxymNu6wZVuPHmg."
+os.environ['_BARD_API_KEY']="YggvfGCbgwKg-Gj_1snZ6QD7QqSipEx4deG6ueqtjvIZvXLU3bBjeqiWKPsGP5sRcXzu2A."
 # set your __Secure-1PSID value to key
 # dilKiBaat = 'YggvfJQF5xswQVjlKzOIGg5AskxEm6j3POo9E9g8lMFVh2EfEWcOpuZxxymNu6wZVuPHmg.'
 
